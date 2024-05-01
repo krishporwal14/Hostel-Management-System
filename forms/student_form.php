@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <script>
+        // Function to show popup when form is successfully submitted
+        function showSuccessPopup() {
+            alert("Form submitted successfully!");
+            // You can customize the popup as per your requirement using modal, toast, or any other library
+        }
+
+        // Check if the form was submitted successfully
+        <?php
+        if (isset($_GET['success']) && $_GET['success'] == 'true') {
+            echo 'showSuccessPopup();';
+        }
+        ?>
+    </script>
 </head>
+
 <body>
+    <?php
+    require('../db_connect.php');
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve form data
+        $hostel_id = $_POST["hostel_id"];
+        $student_id = $_POST["student_id"];
+        $name = $_POST["name"];
+        $address = $_POST["address"];
+        $age = $_POST["age"];
+        $course = $_POST["course"];
+        $student_phone_number = $_POST["student_phone_number"];
+        $dependent_phone_number = $_POST["dependent_phone_number"];
+        $date_of_join = $_POST["date_of_join"];
+        $date_of_leave = $_POST["date_of_leave"];
+        // Prepare SQL statement
+        $sql = "INSERT INTO students (hostel_id, student_id, name, address, age, course, student_phone_number, dependent_phone_number, date_of_join, date_of_leave) VALUES ('$hostel_id', '$student_id', '$name', '$address', $age, '$course', '$student_phone_number', '$dependent_phone_number', '$date_of_join', '$date_of_leave')";
+        // Execute SQL statement
+        if ($conn->query($sql) === TRUE) {
+            // Send response to frontend
+            $response = array('success' => true);
+            echo json_encode($response);
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        // After the form submission is successful, redirect back to the same page with a success parameter
+        header("Location: student_form.php?success=true");
+        exit();
+    }
+    ?>
+    <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">
         <div class="bg-zinc-800 mx-auto p-4 rounded-lg container">
             <div class="flex justify-between items-center">
@@ -18,12 +65,12 @@
                     </svg>
                 </a>
             </div>
-            <form action="#" method="POST" class="flex flex-col max-w rounded px-8 pt-6 pb-2">
+            <form action="#" id="studentForm" method="POST" class="flex flex-col max-w rounded px-8 pt-6 pb-2">
                 <div class="grid grid-cols-3 gap-5 mb-4">
-                <div>
-                    <label for="hostel_id" class="block text-white text-md font-bold mb-1">Hostel ID:</label>
-                    <input type="text" id="hostel_id" name="hostel_id" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Hostel ID">
-                </div>
+                    <div>
+                        <label for="hostel_id" class="block text-white text-md font-bold mb-1">Hostel ID:</label>
+                        <input type="text" id="hostel_id" name="hostel_id" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Hostel ID">
+                    </div>
                     <div>
                         <label for="student_id" class="block text-white text-md font-bold mb-1">Student ID:</label>
                         <input type="text" id="student_id" name="student_id" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Student ID">
@@ -66,10 +113,12 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="bg-cyan-800 hover:bg-cyan-900 text-white w-full font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline">Add Student</button>
+                    <button type="submit" onclick="submitStudentForm()" class="bg-cyan-800 hover:bg-cyan-900 text-white w-full font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline">Add Student</button>
                 </div>
             </form>
         </div>
     </div>
+    <script src="./scripts/script.js"></script>
 </body>
+
 </html>
