@@ -11,7 +11,7 @@
     <?php
         require('db_connect.php');
     ?>
-    <div class="min-h-screen bg-neutral-950 text-white">
+    <div class="min-h-screen w-full bg-neutral-950 text-white">
         <?php 
             require('./nav.php');
             require('./cards.php');
