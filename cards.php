@@ -1,6 +1,6 @@
 <div class="my-4 mx-2 bg-zinc-800 p-5 rounded-lg">
             <div class="form-heading text-center pb-5 w-full m-2">
-                <h1 class="text-3xl">Forms</h1>
+                <h1 class="text-2xl font-bold">Forms</h1>
             </div>
     <div id="form-container" class="grid grid-cols-3 grid-rows-2 gap-5 w-full">
         <div class="bg-black h-32 rounded-lg p-3">
