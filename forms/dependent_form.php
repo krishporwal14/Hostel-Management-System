@@ -91,6 +91,7 @@
 </form>
 
         </div>
+        <?php require("../footer.php"); ?>
     </div>
     <script src="../scripts/script.js"></script>
 </body>
