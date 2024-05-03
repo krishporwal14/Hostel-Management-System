@@ -7,6 +7,7 @@
     <title>Hostel Branches</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 
 <body>

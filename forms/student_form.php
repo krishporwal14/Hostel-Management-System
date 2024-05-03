@@ -7,6 +7,7 @@
     <title>Student Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <script>
         // Function to show popup when form is successfully submitted
         function showSuccessPopup() {

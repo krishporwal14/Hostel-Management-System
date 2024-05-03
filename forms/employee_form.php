@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <script>
         // Function to show popup when form is successfully submitted
         function showSuccessPopup() {
@@ -21,34 +23,35 @@
         ?>
     </script>
 </head>
+
 <body>
     <?php
     require("../db_connect.php");
-        // Check if the form is submitted
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Retrieve form data
-            $employee_id = $_POST["employee_id"];
-            $name = $_POST["name"];
-            $gender = $_POST["gender"];
-            $hostel_id = $_POST["hostel_id"];
-            $phone_number = $_POST["phone_number"];
-            $salary = $_POST["salary"];
-            $date_of_join = $_POST["date_of_join"];
-            $date_of_leave = $_POST["date_of_leave"];
-            // Prepare SQL statement
-            $sql = "INSERT INTO employees (employee_id, name, gender, hostel_id, phone_number, salary, date_of_join, date_of_leave) VALUES ('$employee_id', '$name', '$gender', '$hostel_id', '$phone_number', '$salary', '$date_of_join', '$date_of_leave')";
-            // Execute SQL statement
-            if ($conn->query($sql) === TRUE) {
-                // Send response to frontend
-                $response = array('success' => true);
-                echo json_encode($response);
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-            // After the form submission is successful, redirect back to the same page with a success parameter
-            header("Location: employee_form.php?success=true");
-            exit();
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve form data
+        $employee_id = $_POST["employee_id"];
+        $name = $_POST["name"];
+        $gender = $_POST["gender"];
+        $hostel_id = $_POST["hostel_id"];
+        $phone_number = $_POST["phone_number"];
+        $salary = $_POST["salary"];
+        $date_of_join = $_POST["date_of_join"];
+        $date_of_leave = $_POST["date_of_leave"];
+        // Prepare SQL statement
+        $sql = "INSERT INTO employees (employee_id, name, gender, hostel_id, phone_number, salary, date_of_join, date_of_leave) VALUES ('$employee_id', '$name', '$gender', '$hostel_id', '$phone_number', '$salary', '$date_of_join', '$date_of_leave')";
+        // Execute SQL statement
+        if ($conn->query($sql) === TRUE) {
+            // Send response to frontend
+            $response = array('success' => true);
+            echo json_encode($response);
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
+        // After the form submission is successful, redirect back to the same page with a success parameter
+        header("Location: employee_form.php?success=true");
+        exit();
+    }
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">
@@ -73,17 +76,17 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5 mb-4">
-                <div>
-                    <label for="gender" class="block text-white text-md font-bold mb-1">Gender:</label>
-                    <select id="gender" name="gender" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="hostel_id" class="block text-white text-md font-bold mb-1">Hostel ID:</label>
-                    <input type="text" id="hostel_id" name="hostel_id" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Hostel ID">
-                </div>
+                    <div>
+                        <label for="gender" class="block text-white text-md font-bold mb-1">Gender:</label>
+                        <select id="gender" name="gender" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="hostel_id" class="block text-white text-md font-bold mb-1">Hostel ID:</label>
+                        <input type="text" id="hostel_id" name="hostel_id" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Hostel ID">
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5 mb-4">
                     <div>
@@ -114,4 +117,5 @@
     </div>
     <script src="../scripts/script.js"></script>
 </body>
+
 </html>

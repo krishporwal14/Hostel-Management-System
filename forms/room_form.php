@@ -7,6 +7,7 @@
     <title>Room Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <script>
         // Function to show popup when form is successfully submitted
         function showSuccessPopup() {
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-<?php
+    <?php
     require('../db_connect.php');
     // Check if the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -46,7 +47,7 @@
         header("Location: room_form.php?success=true");
         exit();
     }
-?>
+    ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">
         <div class="bg-zinc-800 mx-auto p-4 rounded-lg container">
