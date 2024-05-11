@@ -39,8 +39,6 @@
                 <a href="./forms/fees_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">+Add Fee Entry</button></a>
             </div>
         </div>
-
-
         <div class="bg-black h-32 rounded-lg p-3">
             <div class="flex flex-col h-full justify-between text-center">
                 <p class="text-xl">Student</p>
@@ -75,6 +73,30 @@
             <div class="flex flex-col h-full justify-between text-center">
                 <p class="text-xl">Fees</p>
                 <a href="./forms/fees_delete_form.php" class="no-underline"><button class="bg-red-800 rounded-lg h-12 text-md font-bold w-full">-Delete Fee Entry</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Student</p>
+                <a href="./forms/student_update_form.php" class="no-underline"><button class="bg-green-800 rounded-lg h-12 text-md font-bold w-full">Update Student</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Employee</p>
+                <a href="./forms/employee_update_form.php" class="no-underline"><button class="bg-green-800 rounded-lg h-12 text-md font-bold w-full">Update Employee</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Student Room Assignment</p>
+                <a href="./forms/student_room_assignment_update_form.php" class="no-underline"><button class="bg-green-800 rounded-lg h-12 text-md font-bold w-full">Update Room Assignment</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3 col-span-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Dependent</p>
+                <a href="./forms/dependent_update_form.php" class="no-underline"><button class="bg-green-800 rounded-lg h-12 text-md font-bold w-full">Update Dependent</button></a>
             </div>
         </div>
     </div>
