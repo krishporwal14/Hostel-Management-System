@@ -43,7 +43,7 @@
             } else {
                 // If no rows are returned, display a message
                 echo '<div class="data p-3 rounded-lg" style="background-color: #111111;">';
-                echo '<p class="text-md font-bold">No hostel branches found.</p>';
+                echo '<p class="text-md font-bold">No students found.</p>';
                 echo '</div>';
             }
             ?>

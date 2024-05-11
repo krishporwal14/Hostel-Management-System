@@ -2,7 +2,7 @@
     <div class="form-heading text-center pb-5 w-full m-2">
         <h1 class="text-2xl font-bold">Forms</h1>
     </div>
-    <div id="form-container" class="grid grid-cols-3 grid-rows-4 gap-5 w-full">
+    <div id="form-container" class="grid grid-cols-3 grid-rows-7 gap-5 w-full">
         <div class="bg-black h-32 rounded-lg p-3">
             <div class="flex flex-col h-full justify-between text-center">
                 <p class="text-xl">Student</p>
@@ -93,10 +93,40 @@
                 <a href="./forms/student_room_assignment_update_form.php" class="no-underline"><button class="bg-green-800 rounded-lg h-12 text-md font-bold w-full">Update Room Assignment</button></a>
             </div>
         </div>
-        <div class="bg-black h-32 rounded-lg p-3 col-span-3">
+        <div class="bg-black h-32 rounded-lg p-3">
             <div class="flex flex-col h-full justify-between text-center">
                 <p class="text-xl">Dependent</p>
                 <a href="./forms/dependent_update_form.php" class="no-underline"><button class="bg-green-800 rounded-lg h-12 text-md font-bold w-full">Update Dependent</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Student</p>
+                <a href="./forms/student_search_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">Search Student</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Employee</p>
+                <a href="./forms/employee_search_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">Search Employee</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Student Room Assignment</p>
+                <a href="./forms/student_room_assignment_search_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">Search Room Assignment</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Dependent</p>
+                <a href="./forms/dependent_search_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">Search Dependent</button></a>
+            </div>
+        </div>
+        <div class="bg-black h-32 rounded-lg p-3">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Fees</p>
+                <a href="./forms/fees_search_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">Search Fee Entry</button></a>
             </div>
         </div>
     </div>

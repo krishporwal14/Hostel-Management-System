@@ -92,3 +92,7 @@ function submitFeeForm() {
 function submitDeleteForm() {
   document.getElementById("deleteForm").submit();
 }
+
+function submitSearchForm() {
+  document.getElementById("searchForm").submit();
+}
