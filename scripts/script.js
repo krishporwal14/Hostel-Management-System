@@ -88,3 +88,7 @@ function submitFeeForm() {
   // Submit the form
   document.getElementById("feeForm").submit();
 }
+
+function submitDeleteForm() {
+  document.getElementById("deleteForm").submit();
+}

@@ -28,27 +28,41 @@
     <?php
     require('../db_connect.php');
     // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $student_id = $_POST["student_id"];
-        $dependent_phone_number = $_POST["dependent_phone_number"];
-        $name = $_POST["name"];
-        $age = $_POST["age"];
-        $relation = $_POST["relation"];
-        // Prepare SQL statement
-        $sql = "INSERT INTO dependents (student_id, dependent_phone_number, name, age, relation) VALUES ('$student_id', '$dependent_phone_number', '$name', $age, '$relation')";
-        // Execute SQL statement
-        if ($conn->query($sql) === TRUE) {
-            // Send response to frontend
-            $response = array('success' => true);
-            echo json_encode($response);
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+    try {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve form data
+            $student_id = $_POST["student_id"];
+            $dependent_phone_number = $_POST["dependent_phone_number"];
+            $name = $_POST["name"];
+            $age = $_POST["age"];
+            $relation = $_POST["relation"];
+            // Prepare SQL statement
+            $sql = "INSERT INTO dependents (student_id, dependent_phone_number, name, age, relation) VALUES ('$student_id', '$dependent_phone_number', '$name', $age, '$relation')";
+            // Execute SQL statement
+            if ($conn->query($sql) === TRUE) {
+                // Send response to frontend
+                $response = array('success' => true);
+                echo json_encode($response);
+            } else {
+                // Error occurred, show it in an alert
+                ?>
+                <script>
+                    alert("Error: <?php echo $conn->error; ?>");
+                </script>
+                <?php
+            }
+            // Redirect back to the form
+            header("Location: dependent_form.php?success=true");
+            exit();
         }
-        // After the form submission is successful, redirect back to the same page with a success parameter
-        header("Location: dependent_form.php?success=true");
-        exit();
-    }
+    } catch (Exception $e) {
+        // Catch any exceptions that occur and show in an alert
+        ?>
+        <script>
+            alert("Error: <?php echo $e->getMessage(); ?>");
+        </script>
+        <?php
+    }    
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">

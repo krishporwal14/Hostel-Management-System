@@ -51,3 +51,25 @@ BEGIN
 END//
 
 DELIMITER ;
+
+ALTER TABLE dependents
+ADD CONSTRAINT dependents_ibfk_1
+FOREIGN KEY (student_id)
+REFERENCES students(student_id)
+ON DELETE CASCADE;
+
+ALTER TABLE fees
+ADD CONSTRAINT fees_ibfk_1
+FOREIGN KEY (student_id)
+REFERENCES students(student_id)
+ON UPDATE CASCADE;
+
+ALTER TABLE student_room_assignment
+ADD CONSTRAINT student_room_assignment_ibfk_1
+FOREIGN KEY (student_id)
+REFERENCES students(student_id)
+ON DELETE CASCADE,
+ADD CONSTRAINT student_room_assignment_ibfk_2
+FOREIGN KEY (room_number)
+REFERENCES rooms(room_number)
+ON DELETE CASCADE;

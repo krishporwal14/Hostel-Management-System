@@ -28,24 +28,37 @@
     <?php
     require('../db_connect.php');
     // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $room_number = $_POST["room_number"];
-        $hostel_id = $_POST["hostel_id"];
-        $capacity = $_POST["capacity"];
-        // Prepare SQL statement
-        $sql = "INSERT INTO rooms (room_number, hostel_id, capacity) VALUES ('$room_number', '$hostel_id', '$capacity')";
-        // Execute SQL statement
-        if ($conn->query($sql) === TRUE) {
-            // Send response to frontend
-            $response = array('success' => true);
-            echo json_encode($response);
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+    try {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve form data
+            $room_number = $_POST["room_number"];
+            $hostel_id = $_POST["hostel_id"];
+            $capacity = $_POST["capacity"];
+            // Prepare SQL statement
+            $sql = "INSERT INTO rooms (room_number, hostel_id, capacity) VALUES ('$room_number', '$hostel_id', '$capacity')";
+            // Execute SQL statement
+            if ($conn->query($sql) === TRUE) {
+                // Send response to frontend
+                $response = array('success' => true);
+                echo json_encode($response);
+            } else {
+                // Error occurred, show it in an alert
+                ?>
+                <script>
+                    alert("Error: <?php echo $conn->error; ?>");
+                </script>
+                <?php
+            }
+            // After the form submission is successful, redirect back to the same page with a success parameter
+            header("Location: room_form.php?success=true");
+            exit();
         }
-        // After the form submission is successful, redirect back to the same page with a success parameter
-        header("Location: room_form.php?success=true");
-        exit();
+    } catch (Exception $e) {
+        ?>
+        <script>
+            alert("Error: <?php echo $e->getMessage(); ?>");
+        </script>
+        <?php
     }
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>

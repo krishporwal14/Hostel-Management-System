@@ -28,30 +28,44 @@
     <?php
     require("../db_connect.php");
     // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $employee_id = $_POST["employee_id"];
-        $name = $_POST["name"];
-        $gender = $_POST["gender"];
-        $hostel_id = $_POST["hostel_id"];
-        $phone_number = $_POST["phone_number"];
-        $salary = $_POST["salary"];
-        $date_of_join = $_POST["date_of_join"];
-        $date_of_leave = $_POST["date_of_leave"];
-        // Prepare SQL statement
-        $sql = "INSERT INTO employees (employee_id, name, gender, hostel_id, phone_number, salary, date_of_join, date_of_leave) VALUES ('$employee_id', '$name', '$gender', '$hostel_id', '$phone_number', '$salary', '$date_of_join', '$date_of_leave')";
-        // Execute SQL statement
-        if ($conn->query($sql) === TRUE) {
-            // Send response to frontend
-            $response = array('success' => true);
-            echo json_encode($response);
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+    try {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve form data
+            $employee_id = $_POST["employee_id"];
+            $name = $_POST["name"];
+            $gender = $_POST["gender"];
+            $hostel_id = $_POST["hostel_id"];
+            $phone_number = $_POST["phone_number"];
+            $salary = $_POST["salary"];
+            $date_of_join = $_POST["date_of_join"];
+            $date_of_leave = $_POST["date_of_leave"];
+            // Prepare SQL statement
+            $sql = "INSERT INTO employees (employee_id, name, gender, hostel_id, phone_number, salary, date_of_join, date_of_leave) VALUES ('$employee_id', '$name', '$gender', '$hostel_id', '$phone_number', '$salary', '$date_of_join', '$date_of_leave')";
+            // Execute SQL statement
+            if ($conn->query($sql) === TRUE) {
+                // Send response to frontend
+                $response = array('success' => true);
+                echo json_encode($response);
+            } else {
+                // Error occurred, show it in an alert
+                ?>
+                <script>
+                    alert("Error: <?php echo $conn->error; ?>");
+                </script>
+                <?php
+            }
+            // Redirect back to the form
+            header("Location: employee_form.php?success=true");
+            exit();
         }
-        // After the form submission is successful, redirect back to the same page with a success parameter
-        header("Location: employee_form.php?success=true");
-        exit();
-    }
+    } catch (Exception $e) {
+        // Catch any exceptions that occur and show in an alert
+        ?>
+        <script>
+            alert("Error: <?php echo $e->getMessage(); ?>");
+        </script>
+        <?php
+    }    
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">
@@ -109,7 +123,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" onclick="submitEmployee()" class="bg-cyan-800 hover:bg-cyan-900 text-white w-full font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline">Add Employee</button>
+                    <button type="submit" onclick="submitEmployeeForm()" class="bg-cyan-800 hover:bg-cyan-900 text-white w-full font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline">Add Employee</button>
                 </div>
             </form>
         </div>

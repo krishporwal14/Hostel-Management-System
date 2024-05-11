@@ -28,28 +28,42 @@
     <?php
     require('../db_connect.php');
     // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $student_id = $_POST["student_id"];
-        $date = $_POST["date"];
-        $amount = $_POST["amount"];
-        $paid_till_date = $_POST["paid_till_date"];
-        $pending = $_POST["pending"];
-        $mode_of_payment = $_POST["mode_of_payment"];
-        // Prepare SQL statement
-        $sql = "INSERT INTO fees (student_id, date, amount, paid_till_date, pending, mode_of_payment) VALUES ('$student_id', '$date', $amount, '$paid_till_date', $pending, '$mode_of_payment')";
-        // Execute SQL statement
-        if ($conn->query($sql) === TRUE) {
-            // Send response to frontend
-            $response = array('success' => true);
-            echo json_encode($response);
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+    try {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve form data
+            $student_id = $_POST["student_id"];
+            $date = $_POST["date"];
+            $amount = $_POST["amount"];
+            $paid_till_date = $_POST["paid_till_date"];
+            $pending = $_POST["pending"];
+            $mode_of_payment = $_POST["mode_of_payment"];
+            // Prepare SQL statement
+            $sql = "INSERT INTO fees (student_id, date, amount, paid_till_date, pending, mode_of_payment) VALUES ('$student_id', '$date', $amount, '$paid_till_date', $pending, '$mode_of_payment')";
+            // Execute SQL statement
+            if ($conn->query($sql) === TRUE) {
+                // Send response to frontend
+                $response = array('success' => true);
+                echo json_encode($response);
+            } else {
+                // Error occurred, show it in an alert
+                ?>
+                <script>
+                    alert("Error: <?php echo $conn->error; ?>");
+                </script>
+                <?php
+            }
+            // Redirect back to the form
+            header("Location: fees_form.php?success=true");
+            exit();
         }
-        // After the form submission is successful, redirect back to the same page with a success parameter
-        header("Location: fees_form.php?success=true");
-        exit();
-    }
+    } catch (Exception $e) {
+        // Catch any exceptions that occur and show in an alert
+        ?>
+        <script>
+            alert("Error: <?php echo $e->getMessage(); ?>");
+        </script>
+        <?php
+    }    
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">

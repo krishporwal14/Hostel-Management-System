@@ -28,32 +28,46 @@
     <?php
     require('../db_connect.php');
     // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $hostel_id = $_POST["hostel_id"];
-        $student_id = $_POST["student_id"];
-        $name = $_POST["name"];
-        $address = $_POST["address"];
-        $age = $_POST["age"];
-        $course = $_POST["course"];
-        $student_phone_number = $_POST["student_phone_number"];
-        $dependent_phone_number = $_POST["dependent_phone_number"];
-        $date_of_join = $_POST["date_of_join"];
-        $date_of_leave = $_POST["date_of_leave"];
-        // Prepare SQL statement
-        $sql = "INSERT INTO students (hostel_id, student_id, name, address, age, course, student_phone_number, dependent_phone_number, date_of_join, date_of_leave) VALUES ('$hostel_id', '$student_id', '$name', '$address', $age, '$course', '$student_phone_number', '$dependent_phone_number', '$date_of_join', '$date_of_leave')";
-        // Execute SQL statement
-        if ($conn->query($sql) === TRUE) {
-            // Send response to frontend
-            $response = array('success' => true);
-            echo json_encode($response);
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+    try {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve form data
+            $hostel_id = $_POST["hostel_id"];
+            $student_id = $_POST["student_id"];
+            $name = $_POST["name"];
+            $address = $_POST["address"];
+            $age = $_POST["age"];
+            $course = $_POST["course"];
+            $student_phone_number = $_POST["student_phone_number"];
+            $dependent_phone_number = $_POST["dependent_phone_number"];
+            $date_of_join = $_POST["date_of_join"];
+            $date_of_leave = $_POST["date_of_leave"];
+            // Prepare SQL statement
+            $sql = "INSERT INTO students (hostel_id, student_id, name, address, age, course, student_phone_number, dependent_phone_number, date_of_join, date_of_leave) VALUES ('$hostel_id', '$student_id', '$name', '$address', $age, '$course', '$student_phone_number', '$dependent_phone_number', '$date_of_join', '$date_of_leave')";
+            // Execute SQL statement
+            if ($conn->query($sql) === TRUE) {
+                // Send response to frontend
+                $response = array('success' => true);
+                echo json_encode($response);
+            } else {
+                // Error occurred, show it in an alert
+                ?>
+                <script>
+                    alert("Error: <?php echo $conn->error; ?>");
+                </script>
+                <?php
+            }
+            // Redirect back to the form
+            header("Location: student_form.php?success=true");
+            exit();
         }
-        // After the form submission is successful, redirect back to the same page with a success parameter
-        header("Location: student_form.php?success=true");
-        exit();
-    }
+    } catch (Exception $e) {
+        // Catch any exceptions that occur and show in an alert
+        ?>
+        <script>
+            alert("Error: <?php echo $e->getMessage(); ?>");
+        </script>
+        <?php
+    }    
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">
