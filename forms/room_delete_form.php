@@ -32,8 +32,9 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Retrieve form data
             $room_number = $_POST["room_number"];
+            $hostel_id = $_POST["hostel_id"];
             // Prepare SQL statement
-            $sql = "DELETE FROM rooms WHERE room_number='$room_number';";
+            $sql = "DELETE FROM rooms WHERE room_number='$room_number' AND hostel_id='$hostel_id';";
             // Execute SQL statement
             if ($conn->query($sql) === TRUE) {
                 // Send response to frontend
@@ -71,10 +72,14 @@
                 </a>
             </div>
             <form action="#" id="deleteForm" method="POST" class="flex flex-col max-w rounded px-8 pt-6 pb-2">
-                <div class="mb-4">
+                <div class="grid grid-cols-2 gap-5 mb-4">
                     <div>
                         <label for="room_number" class="block text-white text-md font-bold mb-1">Room Number:</label>
                         <input type="number" id="room_number" name="room_number" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Room Number">
+                    </div>
+                    <div>
+                    <label for="hostel_id" class="block text-white text-md font-bold mb-1">Hostel ID:</label>
+                    <input type="text" id="hostel_id" name="hostel_id" class="bg-black shadow appearance-none rounded-lg w-full py-3 px-4 text-white focus:outline-none focus:shadow-outline" placeholder="Enter Hostel ID">
                     </div>
                 </div>
                 <div>
