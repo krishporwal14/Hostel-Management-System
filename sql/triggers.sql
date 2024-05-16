@@ -96,7 +96,7 @@ BEGIN
 END;
 //
 
-CR  EATE TRIGGER validate_phone_number_dependents BEFORE INSERT ON dependents
+CREATE TRIGGER validate_phone_number_dependents BEFORE INSERT ON dependents
 FOR EACH ROW
 BEGIN
     IF LENGTH(NEW.dependent_phone_number) > 10 OR LENGTH(NEW.dependent_phone_number) THEN
@@ -135,3 +135,5 @@ END;
 //
 
 DELIMITER ;
+
+SELECT TRIGGER_NAME, EVENT_MANIPULATION, EVENT_OBJECT_TABLE, ACTION_TIMING FROM information_schema.triggers WHERE trigger_schema = 'smjv';
