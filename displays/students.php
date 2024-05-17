@@ -20,7 +20,7 @@
             <?php
             // Include the database connection file
             require('../db_connect.php');
-            $query = "SELECT * FROM students";
+            $query = "SELECT * FROM hostel_student_details";
             $result = $conn->query($query);
             // Check if there are any rows returned
             if ($result->num_rows > 0) {
