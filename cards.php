@@ -130,4 +130,10 @@
             </div>
         </div>
     </div>
+    <div class="bg-black h-32 rounded-lg p-3 mt-5">
+            <div class="flex flex-col h-full justify-between text-center">
+                <p class="text-xl">Fees</p>
+                <a href="./forms/payment_form.php" class="no-underline"><button class="bg-cyan-800 rounded-lg h-12 text-md font-bold w-full">Pay Fees</button></a>
+            </div>
+        </div>
 </div>

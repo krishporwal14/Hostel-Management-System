@@ -14,7 +14,6 @@
             alert("Form submitted successfully!");
             // You can customize the popup as per your requirement using modal, toast, or any other library
         }
-
         // Check if the form was submitted successfully
         <?php
         if (isset($_GET['success']) && $_GET['success'] == 'true') {
@@ -46,11 +45,11 @@
                 echo json_encode($response);
             } else {
                 // Error occurred, show it in an alert
-                ?>
+    ?>
                 <script>
                     alert("Error: <?php echo $conn->error; ?>");
                 </script>
-                <?php
+        <?php
             }
             // Redirect back to the form
             header("Location: fees_form.php?success=true");
@@ -62,8 +61,8 @@
         <script>
             alert("Error: <?php echo $e->getMessage(); ?>");
         </script>
-        <?php
-    }    
+    <?php
+    }
     ?>
     <div class="text-white"><?php require('../nav.php') ?></div>
     <div class="min-h-screen bg-neutral-950 text-white pt-5">
